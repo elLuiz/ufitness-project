@@ -1,8 +1,10 @@
 package com.ufitness.controller.demo.client;
 
+import com.ufitness.service.service.client.ClientDTO;
 import com.ufitness.service.service.client.ClientRegistryDTO;
 import com.ufitness.service.service.client.ClientService;
-import com.ufitness.service.service.dto.ClientRegistryDTOService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,7 +17,7 @@ public class ClientController {
     }
 
     @PostMapping
-    public ClientRegistryDTO saveClient(@RequestBody ClientRegistryDTO clientRegistryDTO) {
-        return clientService.saveClient(clientRegistryDTO);
+    public ResponseEntity<ClientDTO> saveClient(@RequestBody ClientRegistryDTO clientRegistryDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(clientService.saveClient(clientRegistryDTO));
     }
 }
